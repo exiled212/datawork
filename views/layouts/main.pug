@@ -4,6 +4,20 @@ html
 		title= title
 		link(rel="stylesheet", href="./libs/bootstrap-4.0.0/css/bootstrap.min.css")
 	body
+		nav( class="navbar navbar-dark bg-dark")
+			a(class="navbar-brand" href="#") Lista de Tareas
+			button( class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
+				span( class="navbar-toggler-icon")
+			div( class="collapse navbar-collapse" id="navbarText")
+				ul(class="navbar-nav mr-auto")
+				li( class="nav-item active")
+					a(class="nav-link" href="#") Home 
+						span( class="sr-only") (current)
+				li( class="nav-item")
+					a(class="nav-link" href="#") Features
+				li( class="nav-item")
+					a(class="nav-link" href="#") Pricing
+				span(class="navbar-text") Navbar text with an inline element
 		block content
 		script(src="./libs/jquery-3.3.1/js/jquery.min.js")
 		script(src="./libs/bootstrap-4.0.0/js/bootstrap.min.js")
