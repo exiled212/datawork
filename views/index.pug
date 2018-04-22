@@ -1,5 +1,52 @@
 extends ./layouts/main
 
 block content
-	h1= title
-	p Welcome to #{title}
+	.row
+		.col-sm
+			h1= title
+			p Welcome to #{title}
+	.row
+		.col-sm
+			form
+				.form-group
+					input(type="file", id="listWorks", class="form-control")
+	.row
+		.col-sm
+			#test
+	script.
+		window.onload = function(){
+			$('#listWorks').on('change', function(){
+				$('#test').empty();
+				let file = this.files[0];
+				let reader = new FileReader();
+
+				let table = document.createElement('table');
+				$('#test').append(table);
+				$(table).addClass(['table', 'table-bordered']);
+				reader.onload = function(e) {
+					let thead = document.createElement('thead');
+					let tbody = document.createElement('tbody');
+					table.append(thead);
+					table.append(tbody);
+					let rows = e.target.result.split("\n");
+					for(let i in rows){
+						let row = rows[i];
+						let columns = row.split('|');
+						let tr = document.createElement('tr');
+						if(i == 0){
+							thead.append(tr);
+						} else {
+							tbody.append(tr);
+						}
+						for(let o in columns){
+							let td = (i == 0)?document.createElement('th'):document.createElement('td');
+							let column = columns[o];
+							td.innerHTML = column;
+							tr.append(td);
+						}
+					}
+				}
+				
+				reader.readAsText(file);
+			})
+		}
